@@ -7,7 +7,7 @@ static FILE *file = NULL;
 
 int audit_hook(const char *event, PyObject *args, void *userData) {
     // I can find no documentation whatsoever on expected return values?!
-    fprintf(file, "EVENT=%s\nDATA=", event);
+    fprintf(file, "event: %s\ndata: ", event);
     PyObject_Print(PyObject_Repr(args), file, 0);
     fputs("\n\n", file);
     return 0;
