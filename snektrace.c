@@ -31,7 +31,15 @@ int main(int argc, char *argv[]) {
     PySys_AddAuditHook(audit_hook, NULL);
     PyConfig_InitPythonConfig(&config);
     wchar_t *module_name = Py_DecodeLocale(argv[1], NULL);
-    config.run_module = module_name;
+
+    int len = strlen(argv[1]);
+    if (strcmp(argv[1] + len - 3, ".py") == 0) {
+        // If it's a .py file, run it as a file.
+        config.run_filename = module_name;
+    } else {
+        // Otherwise, run it as a module.
+        config.run_module = module_name;
+    }
     Py_InitializeFromConfig(&config);
 
     return Py_RunMain();
