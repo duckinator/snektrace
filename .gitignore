@@ -1,4 +1,4 @@
 /snektrace
 compile_flags.txt
-/logs
-/logs.txt
+logs
+logs.txt
